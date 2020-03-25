@@ -1,4 +1,4 @@
-var token = "MzQ2NzE0NzYzNzAwNjAwODMy.XnA7fQ.ahODhWeP_HpX7qEVh7utPXForYs";//"MzU1NDI2OTc2NzAzNzA5MTk1.XTNrNw.IPNYzM41oeaygn7_QZMCKBIMUPE";
+var token = require("./token.js");//"MzU1NDI2OTc2NzAzNzA5MTk1.XTNrNw.IPNYzM41oeaygn7_QZMCKBIMUPE";
 const Discord = require("discord.js");
 const fs = require("fs");
 const client = new Discord.Client();
@@ -190,6 +190,7 @@ function genMap(){
         for(var y = 0; y < settings.height; y++){
             //map[x][y].elevation = Math.round(map[x][y].elevation)
             if(map[x][y].elevation > settings.shoreHeight){
+                console.log(map[x][y].elevation)
                 var id = uuid(people);
                 people[id] = new person(id,x,y,randomProperty(worldData.cultures));
             }
