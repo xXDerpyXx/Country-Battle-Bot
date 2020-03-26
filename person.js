@@ -30,7 +30,7 @@ module.exports = class Person {
 
 }
 
-function calculateTurn(individual) {
+function doTick(individual) {
 	this.prevEconStance = individual.econStance;
 	this.prevPolStance = individual.polStance;
 
@@ -38,12 +38,8 @@ function calculateTurn(individual) {
 
 	this.prevHappiness = individual.happiness;
 
-	//set happiness
-	//add to life satisfaction
-	//do other stuff too
 
-	this.totalLifeSatisfaction += (individual.happiness - 50) / individual.age; //this way if your happiness is less than average it reduces, but also the older you are the 
-	//less it impacts, idk if this is a good idea but yeah.
+	this.totalLifeSatisfaction += (individual.happiness - 50) / individual.age;
 
 	// If it is the first turn, there hasnt been a chance to calculate political stance based on happiness so instead it just gets set to whatever their country is.
 	if(individual.isFirstTurn) {
