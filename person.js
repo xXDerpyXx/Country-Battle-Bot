@@ -6,7 +6,7 @@ module.exports = class Person {
         this.id = id;
 
 		this.econStance;
-		this.polStance = [];
+		this.polStance;
 		this.totalLifeSatisfaction;
 
 		this.money = 0;
@@ -43,8 +43,8 @@ function doTick(individual) {
 
 	// If it is the first turn, there hasnt been a chance to calculate political stance based on happiness so instead it just gets set to whatever their country is.
 	if(individual.isFirstTurn) {
-		individual.polStance = individual.citizenship[0].calculatePolCompass()[0];
-		individual.econStance = individual.citizenship[0].calculatePolCompass()[1];
+		individual.polStance = individual.citizenship[0].polStance;
+		individual.econStance = individual.citizenship[0].econStance;
 	}
 
 
