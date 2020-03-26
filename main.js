@@ -50,12 +50,12 @@ function imgmap(cx,cy, scale, radius, map){
         for(var x = cx-radius; x < cx+radius;x++){
             if(!oob(x,y)){
                 ctx.fillStyle = "#000000"
-                ctx.fillRect(px * scale, py*scale, scale, scale);
+                ctx.fillRect((x-radius) * scale, (y-radius)*scale, scale, scale);
                 continue;
             }else{
                 if(map[x][y] == null){
                     ctx.fillStyle = "#000000"
-                    ctx.fillRect(px * scale, py*scale, scale, scale);
+                    ctx.fillRect((x-radius) * scale, (y-radius)*scale, scale, scale);
                     continue;
                 }
                 var e = seaHeight(map[x][y].elevation);
@@ -75,7 +75,7 @@ function imgmap(cx,cy, scale, radius, map){
                     ctx.fillStyle = "rgb("+(temp)+","+(temp)+","+(temp)+")"
                 }
                  
-                ctx.fillRect(px * scale, py * scale, scale, scale);
+                ctx.fillRect((x-radius) * scale, (y-radius) * scale, scale, scale);
             }
             
             px++;
@@ -87,7 +87,8 @@ function imgmap(cx,cy, scale, radius, map){
     for(var k in people){
         //console.log(people[k]);
         //ctx.fillRect(people[k].x * scale, people[k].y * scale, scale, scale);
-        ctx.fillRect(Math.floor((people[k].x+Math.random()) * scale), Math.floor((people[k].y+Math.random()) * scale), scale/10, scale/10);
+        if(oob(people[k].x,people[k].y))
+            ctx.fillRect(Math.floor(((people[k].x+Math.random())-radius) * scale), Math.floor(((people[k].y+Math.random())-radius) * scale), scale/10, scale/10);
     }
     /*
     let promises = Object.entries(people).filter(a => a[0] != id).map(([k,p]) => {
@@ -145,6 +146,7 @@ function uuid(obj){
 }
 
 function genMap(){
+    people = {};
     map = [];
     for(var x = 0; x < settings.width; x++){
         map[x] = [];
@@ -189,8 +191,8 @@ function genMap(){
     for(var x = 0; x < settings.width; x++){
         for(var y = 0; y < settings.height; y++){
             //map[x][y].elevation = Math.round(map[x][y].elevation)
-            if(map[x][y].elevation > settings.shoreHeight){
-                console.log(map[x][y].elevation)
+            if(seaHeight(map[x][y].elevation) > 0){
+                //console.log(seaHeight(map[x][y].elevation))
                 var id = uuid(people);
                 people[id] = new person(id,x,y,randomProperty(worldData.cultures));
             }
