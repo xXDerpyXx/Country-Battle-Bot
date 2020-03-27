@@ -5,7 +5,11 @@ module.exports = new v.c.cmd.Command(
         if(v.d.worldData.cultures[args.culture] == null){
             return "that isn't a culture"
         }
-        return v.fn.randomName(v.d.worldData.cultures[args.culture]);
+        let output = String();
+        for (let i = 0; i < args.amount; i++) {
+            output += `${v.fn.randomName(v.d.worldData.cultures[args.culture])}\n`;
+        }
+        return `\`\`\`${output}\`\`\``;
     },
 
     {
@@ -14,6 +18,16 @@ module.exports = new v.c.cmd.Command(
                 'culture',
                 {
                     type: 'string'
+                }
+            ),
+            new v.c.cmd.Argument(
+                'amount',
+                {
+                    type: 'int',
+                    min: 1,
+                    max: 25,
+                    default: 1,
+                    required: false
                 }
             )
         ]

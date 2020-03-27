@@ -14,7 +14,7 @@ module.exports = class Command {
         if (args.length <= this.options.args.length) {
             let parsedArgs = Object();
             for (let i = 0; i < this.options.args.length; i++) {
-                let arg = this.options.args[i]
+                let arg = this.options.args[i];
                 if (args[i]) {
                     let parsedArg = arg.parse(args[i]);
                     if (typeof parsedArg == 'object' && parsedArg.hasOwnProperty('err')) {
@@ -24,7 +24,9 @@ module.exports = class Command {
                     }
                 } else if (arg.options.required) return `${arg.argName()} must be provided.`;
                 else {
-                    parsedArgs[arg.name] = null;
+                    if (arg.options.default) {
+                        parsedArgs[arg.name] = arg.options.default;
+                    } else parsedArgs[arg.name] = null;
                 }
             }
             return parsedArgs;
