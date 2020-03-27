@@ -1,17 +1,17 @@
-var token = require("./token.js");//"MzU1NDI2OTc2NzAzNzA5MTk1.XTNrNw.IPNYzM41oeaygn7_QZMCKBIMUPE";
 const Discord = require("discord.js");
 const fs = require("fs");
+var c = require("canvas");
 const client = new Discord.Client();
 
 var maputils = require("./maputils.js");
-var countries = require("./countries.json");
-var map = require ("./map.json");
+var countries = require("./data/countries.json");
+var map = require ("./data/map.json");
 var settings = require("./settings.json")
 var worldData = null;
-var people = require("./people.json");
+var people = require("./data/people.json");
 var person = require("./person.js");
 try{
-    worldData = require("./worldData.json");
+    worldData = require("./data/worldData.json");
 }catch(err){
 
 }
@@ -28,7 +28,7 @@ var randomProperty = function (obj) {
 };
 
 const {createCanvas} = require("canvas");
-var c = require("canvas");
+
 
 worldData.cultures["gay"] = {
     vowels:["a","y"],
@@ -129,7 +129,8 @@ function imgmap(cx,cy, scale, radius, map){
     */
     return img.createPNGStream();//("image/png",{ compressionLevel: 3, filters: img.PNG_FILTER_NONE });
 }
-class tile{
+
+class tile {
     constructor(x,y){
         this.x = x;
         this.y = y;
@@ -211,7 +212,7 @@ function seaHeight(e){
 }
 
 function asciiMap(xq,yq,size){
-    var output = "";
+    var output = String();
     for(var x = xq-size; x < xq+size; x++){
         for(var y = yq-size; y < yq+size; y++){
             if(oob(x,y)){
@@ -238,18 +239,12 @@ function asciiMap(xq,yq,size){
 }
 
 function save(){
-    fs.writeFileSync("./countries.json",JSON.stringify(countries),'utf8');
-    fs.writeFileSync("./map.json",JSON.stringify(map),'utf8');
+    fs.writeFileSync("./data/countries.json",JSON.stringify(countries),'utf8');
+    fs.writeFileSync("./data/map.json",JSON.stringify(map),'utf8');
     fs.writeFileSync("./settings.json",JSON.stringify(settings),'utf8');
-    fs.writeFileSync("./worldData.json",JSON.stringify(worldData),'utf8');
-    fs.writeFileSync("./people.json",JSON.stringify(people),'utf8');
-
+    fs.writeFileSync("./data/worldData.json",JSON.stringify(worldData),'utf8');
+    fs.writeFileSync("./data/people.json",JSON.stringify(people),'utf8');
 }
-
-save();
-
-var prefix = settings.prefix;
-console.log(settings.admins)
 
 function personUpdate(id){
     var x = Math.round((Math.random()*2)-1)
@@ -269,81 +264,121 @@ setInterval(function(){
     }
 },1000)
 
-client.on('message', msg => {
-    content = msg.content.split(" ");
-    console.log(msg.author.id);
-    if(settings.admins.includes(msg.author.id)){
-        if(content[0] == prefix+"settings"){
-            var output = "`";
-            for(var k in settings){
-                output += k+": "+settings[k]+"\n";
-            }
-            msg.channel.send(output+"`");
-        }
-        if(content[0] == prefix+"set"){
-            if(content[1] != null && content[2] != null){
-                if(settings[content[1]] != null){
-                    if(typeof(settings[content[1]]) == "number"){
-                        settings[content[1]] = parseFloat(content[2])
-                    }
+class msgCommand {
+    constructor(fn, adminOnly=false) {
+        this.fn = fn;
+        this.adminOnly = adminOnly;
+    }
+}
 
-                    if(typeof(settings[content[1]]) == "string"){
-                        settings[content[1]] = content[2]
+const commands = {
+    'settings': new msgCommand(
+        (args, msg) => {
+            let output = String();
+            for (let k in settings) {
+                output += `${k}: ${settings[k]}\n`;
+            }
+            return `\`${output}\``;
+        },
+        true
+    ),
+    'set': new msgCommand(
+        (args, msg) => {
+            if (args.length == 2) {
+                if (settings[args[0]]) {
+                    if (typeof(settings[args[0]]) == "number"){
+                        settings[args[0]] = parseFloat(args[1]);
+                    } else if (typeof(settings[args[0]]) == "string"){
+                        settings[args[0]] = args[1];
                     }
-                    msg.channel.send("setting changed!");
+                    return 'Setting changed!';
+                } else return 'That isn\'t a valid setting.';
+            } else return 'Wrong amount of arguments provided.';
+        },
+        true
+    ),
+    'genmap': new msgCommand(
+        (args, msg) => {
+            genMap();
+            return 'Map made.';
+        },
+        true
+    ),
+    'map': new msgCommand(
+        (args, msg) => {
+            let temp = null;
+            let wideness = 50
+            if(!args[2]){
+                wideness = parseInt(args[2])
+            }
+            let pixelcount = 1000
+            let tilescale = pixelcount/wideness
+            
+            if(!args[0]){
+                temp = imgmap(Math.round(settings.width/2),Math.round(settings.height/2),tilescale,wideness,map);
+            }else{
+                temp = imgmap(Math.round(parseInt(args[0])),Math.round(parseInt(args[1])),tilescale,wideness,map);
+            }
+            return new Discord.MessageAttachment(temp, "image.png");
+        }
+    ),
+    'randomperson': new msgCommand(
+        (args, msg) => {
+            var output = String();
+            var p = randomProperty(people);
+            for(let k in p){
+                output += `   ${k}: ${p[k]}\n`;
+            }
+            return `${p.id}:\n${output}`;
+        }
+    ),
+    'cultures': new msgCommand(
+        (args, msg) => {
+            var output = String();
+            for(var c in worldData.cultures){
+                output +=`${c}\n`
+                for(var k in worldData.cultures[c]){
+                    output += `${k}: ${worldData.cultures[c][k]}\n`;
                 }
             }
+            
+            return output;
         }
-        if(content[0] == prefix+"genmap"){
-            genMap();
-            msg.channel.send("map made");
+    ),
+    'personcount': new msgCommand(
+        (args, msg) => {
+            return Object.keys(people).length;
         }
-    }
-    if(content[0] == prefix+"map"){
-        var temp = null;
-        var wideness = 50
-        if(content[3] != null){
-            wideness = parseInt(content[3])
+    ),
+    'inbound': new msgCommand(
+        (args, msg) => {
+            return oob(parseInt(content[1]),parseInt(content[2]));
         }
-        var pixelcount = 1000
-        var tilescale = pixelcount/wideness
-        
-        if(content[1] == null){
-            temp = imgmap(Math.round(settings.width/2),Math.round(settings.height/2),tilescale,wideness,map);
-        }else{
-            temp = imgmap(Math.round(parseInt(content[1])),Math.round(parseInt(content[2])),tilescale,wideness,map);
-        }
-        msg.channel.send(new Discord.Attachment(temp, "image.png"));
-    }
+    )
+}
 
-    if(content[0] == prefix+"randomperson"){
-        var output = "";
-        var p = randomProperty(people);
-        for(var k in p){
-            output += "   "+k+": "+p[k]+"\n"
-        }
-        msg.channel.send(p.id+":\n"+output);
-    }
+client.on('message', msg => {
+    if(msg.content.startsWith(settings.prefix)) { //if the message is a command
+        let content = msg.content.slice(settings.prefix.length); //remove the command prefix from the message
+        let args = content.split(' '); //split the message into an array of each word
+        let command = args.shift(); //take the first of those words as the command
 
-    if(content[0] == prefix+"cultures"){
-        var output = "";
-        for(var c in worldData.cultures){
-            output +=c+"\n"
-            for(var k in worldData.cultures[c]){
-                output += k+": "+worldData.cultures[c][k]+"\n"
-            }
+        if (commands[command]) { //if the command called exists,
+            command = commands[command];
+            msg.channel.send((() => {
+                if (command.adminOnly && !settings.admins.includes(msg.author.id)) { //if the command is an admin only command but the user isn't an admin
+                    return 'Only admins can use that command.'; //tell off the user
+                }
+                let output = command.fn(args, msg); //run the function of the command
+                save(); //save any changes that were made
+                return output; //send the message returned by the command's function
+            })());
         }
-        
-        msg.channel.send(output);
     }
-
-    if(content[0] == prefix+"personcount"){
-        msg.channel.send(Object.keys(people).length);
-    }
-    
-    if(content[0] == prefix+"inbound"){
-        msg.channel.send(oob(parseInt(content[1]),parseInt(content[2])))
-    }
-    save();
 });
-client.login(token);
+
+function main() {
+    client.login(require("./token.js"));
+}
+
+main();
