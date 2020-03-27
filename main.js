@@ -308,18 +308,18 @@ const commands = {
         (args, msg) => {
             let temp = null;
             let wideness = 50
-            if(!args[2]){
+            if(args[2] != null){
                 wideness = parseInt(args[2])
             }
             let pixelcount = 1000
             let tilescale = pixelcount/wideness
             
-            if(!args[0]){
+            if(args[0] == null){
                 temp = imgmap(Math.round(settings.width/2),Math.round(settings.height/2),tilescale,wideness,map);
             }else{
                 temp = imgmap(Math.round(parseInt(args[0])),Math.round(parseInt(args[1])),tilescale,wideness,map);
             }
-            return new Discord.MessageAttachment(temp, "image.png");
+            return new Discord.Attachment(temp, "image.png");
         }
     ),
     'randomperson': new msgCommand(
