@@ -41,6 +41,8 @@ function imgmap(cx,cy, scale, radius, map){
         radius = 100;
         scale = 1000
     }
+    var xoffset = (radius-cx)*scale;
+    var yoffset = (radius-cy)*scale;
     var img = createCanvas(radius * 2 * scale,radius * 2 * scale) //find something to make canvas
     var ctx = img.getContext("2d") // get canvas context 
     ctx.font = scale + "px Serif";
@@ -50,7 +52,7 @@ function imgmap(cx,cy, scale, radius, map){
         for(var x = cx-radius; x < cx+radius;x++){
             if(!oob(x,y)){
                 ctx.fillStyle = "#000000"
-                ctx.fillRect((x-radius) * scale, (y-radius)*scale, scale, scale);
+                ctx.fillRect((x * scale)+xoffset, (y*scale)+yoffset, scale, scale);
                 continue;
             }else{
                 if(map[x][y] == null){
@@ -75,7 +77,7 @@ function imgmap(cx,cy, scale, radius, map){
                     ctx.fillStyle = "rgb("+(temp)+","+(temp)+","+(temp)+")"
                 }
                  
-                ctx.fillRect((x-radius) * scale, (y-radius) * scale, scale, scale);
+                ctx.fillRect((x * scale)+xoffset, (y*scale)+yoffset, scale, scale);
             }
             
             px++;
@@ -88,7 +90,7 @@ function imgmap(cx,cy, scale, radius, map){
         //console.log(people[k]);
         //ctx.fillRect(people[k].x * scale, people[k].y * scale, scale, scale);
         if(oob(people[k].x,people[k].y))
-            ctx.fillRect(Math.floor(((people[k].x+Math.random())-radius) * scale), Math.floor(((people[k].y+Math.random())-radius) * scale), scale/10, scale/10);
+            ctx.fillRect(Math.floor(((people[k].x+Math.random())) * scale)+xoffset, Math.floor(((people[k].y+Math.random())) * scale)+yoffset, scale/10, scale/10);
     }
     /*
     let promises = Object.entries(people).filter(a => a[0] != id).map(([k,p]) => {
@@ -248,6 +250,24 @@ save();
 
 var prefix = settings.prefix;
 console.log(settings.admins)
+
+function personUpdate(id){
+    var x = Math.round((Math.random()*2)-1)
+    var y = Math.round((Math.random()*2)-1)
+    if(oob(people[id].x+x,people[id].y+y)){
+        if(map[people[id].x+x][people[id].y+y].elevation > settings.seaLevel){
+            people[id].x += x;
+            people[id].y += y;
+        }
+        
+    }
+}
+
+setInterval(function(){
+    for(var k in people){
+        personUpdate(k);
+    }
+},1000)
 
 client.on('message', msg => {
     content = msg.content.split(" ");
