@@ -62,3 +62,7 @@ v.client.on('message', msg => {
         }
     }
 });
+
+v.client.on('ready', () => {
+    console.log('Successfully connected to discord.');
+});
