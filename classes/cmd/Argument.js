@@ -1,7 +1,7 @@
 const defaultOptions = {
     'description': 'This argument doesn\'t currently have a description.',
     'type': 'string', //type can be string, int, float,
-    'required': false,
+    'required': true,
     'default': null, //only use this if options.required is false - sets the argument to this if no data is provided
 
     //if type is string use these

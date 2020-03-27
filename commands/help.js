@@ -6,7 +6,19 @@ module.exports = new v.c.cmd.Command(
         if (args.cmd) { //if the user has specified a command to get help on
             cmd = commands[args.cmd]
             if (cmd) {
-                return `${args.cmd}: ${cmd.options.description}`
+                let output = Object();
+                for (let arg of cmd.options.args) {
+                    let fullDesc = String();
+
+                    fullDesc += ` (${(arg.options.required ? 'required' : 'optional')}): ${arg.options.description}\n`;
+
+                    output[arg.name] = fullDesc; 
+                }
+                let argsDesc = String();
+                for (i in output) {
+                    argsDesc += `\`${i}\`${output[i]}`;
+                }
+                return `\`${v.d.settings.prefix}${args.cmd}${(Object.keys(output).length > 0 ? ` {${Object.keys(output).join('} {')}}` : ``)}\`: ${cmd.options.description}\n\n${argsDesc}`;
             } else return 'That command doesn\'t exist';
         } else {
             let output = String();
