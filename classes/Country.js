@@ -1,4 +1,4 @@
-class Country {
+module.exports = class Country {
 	constructor(id, x, y, name) {
 		
 		this.name = name;
