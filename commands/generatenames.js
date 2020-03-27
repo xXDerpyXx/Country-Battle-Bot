@@ -13,21 +13,27 @@ module.exports = new v.c.cmd.Command(
     },
 
     {
+        description: 'Generate a list of names from a culture\'s language.',
+        
         args: [
             new v.c.cmd.Argument(
                 'culture',
                 {
+                    description: 'Which culture\'s languages names will be generated for.',
+
                     type: 'string'
                 }
             ),
             new v.c.cmd.Argument(
                 'amount',
                 {
+                    description: 'How many names will be generated. Default 1.',
+
                     type: 'int',
                     min: 1,
                     max: 150,
                     default: 1,
-                    required: false
+                    required: false,
                 }
             )
         ]

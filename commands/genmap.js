@@ -7,6 +7,7 @@ module.exports = new v.c.cmd.Command(
     },
     
     {
+        description: 'Regenerates the map.',
         adminOnly: true
     }
 );

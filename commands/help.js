@@ -41,6 +41,8 @@ module.exports = new v.c.cmd.Command(
             new v.c.cmd.Argument(
                 'cmd',
                 {
+                    description: 'Which command to get help on. If not supplied, a list of commands will be shown.',
+
                     required: false
                 }
             )

@@ -19,6 +19,8 @@ module.exports = new v.c.cmd.Command(
     },
     
     {
+        description: 'Generates and shows an image of the map.',
+
         args: [
             new v.c.cmd.Argument(
                 'latitude',

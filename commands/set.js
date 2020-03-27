@@ -21,17 +21,23 @@ module.exports = new v.c.cmd.Command(
     },
     
     {
+        description: 'Changes a setting.',
+
         adminOnly: true,
         args: [
             new v.c.cmd.Argument(
                 'setting',
                 {
+                    description: 'The name of the setting to change.',
+
                     required: true
                 }
             ),
             new v.c.cmd.Argument(
                 'newValue',
                 {
+                    description: 'What to change the setting to.',
+                    
                     required: true
                 }
             )

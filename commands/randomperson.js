@@ -11,5 +11,9 @@ module.exports = new v.c.cmd.Command(
             output += `   ${k}: ${p[k]}\n`;
         }
         return `${p.id}:\n${output}`;
+    },
+
+    {
+        description: 'Gives you the information of a random person.'
     }
 );
