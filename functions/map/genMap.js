@@ -38,7 +38,7 @@ module.exports = function genMap(){
                     }
                 }
                 tempMap[x][y].elevation = total/count;
-                tempMap[x][y].elevation += (Math.random()*v.d.settings.wackyness)-(v.d.settings.wackyness/2)
+                tempMap[x][y].elevation += (Math.random()*v.d.settings.wackiness)-(v.d.settings.wackiness/2)
             }
         }
         map = tempMap;
