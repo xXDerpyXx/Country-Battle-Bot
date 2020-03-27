@@ -1,0 +1,25 @@
+{
+  "name": "country-battle-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "node main.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xXDerpyXx/Country-Battle-Bot.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/xXDerpyXx/Country-Battle-Bot/issues"
+  },
+  "homepage": "https://github.com/xXDerpyXx/Country-Battle-Bot#readme",
+  "dependencies": {
+    "canvas": "^2.6.1",
+    "discord.js": "^12.0.2",
+    "fs": "0.0.1-security"
+  }
+}
