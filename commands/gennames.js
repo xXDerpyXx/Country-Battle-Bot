@@ -9,7 +9,7 @@ module.exports = new v.c.cmd.Command(
         for (let i = 0; i < args.amount; i++) {
             output += v.fn.randomName(v.d.worldData.cultures[args.culture]) + (args.amount <= 25 ? '\n' : ' '); 
         }
-        return `\`\`\`${output}\`\`\``;
+        return `\`\`\`+"\n"+${output}\`\`\``;
     },
 
     {

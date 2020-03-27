@@ -48,6 +48,13 @@ v.d.worldData.cultures["morse"] = {
     capitalization:"none"
 }
 
+v.d.worldData.cultures["anger"] = {
+    vowels:["e","a"],
+    consonants:["g","h","!"],
+    name:"anger",
+    capitalization:"all"
+}
+
 
 
 setInterval(function(){
