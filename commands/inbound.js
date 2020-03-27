@@ -10,13 +10,13 @@ module.exports = new v.c.cmd.Command(
             new v.c.cmd.Argument(
                 'x',
                 {
-                    type: int
+                    type: 'int'
                 }
             ),
             new v.c.cmd.Argument(
                 'y',
                 {
-                    type: int
+                    type: 'int'
                 }
             )
         ]
