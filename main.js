@@ -34,6 +34,13 @@ v.d.worldData.cultures["furry"] = {
     capitalization:"start"
 }
 
+v.d.worldData.cultures["IRS"] = {
+    vowels:["r","u"],
+    consonants:["b","r"],
+    name:"IRS",
+    capitalization:"none"
+}
+
 
 
 setInterval(function(){
