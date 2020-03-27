@@ -8,7 +8,7 @@ module.exports = function randomName(c) {
         type = "v"
     }
     var letter = v.fn.pickLetter(type,c);
-    if(c.capitalization == "start" || (c.capitalization == "random" && Math.random() >0.5)){
+    if(c.capitalization == "start" || (c.capitalization == "random" && Math.random() >0.5)|| c.capitalization == "all"){
         letter = letter.toUpperCase()
     }
     
@@ -20,7 +20,7 @@ module.exports = function randomName(c) {
         }
         output = output+""+letter;
         letter = v.fn.pickLetter(type,c);
-        if(c.capitalization == "random" && Math.random() >0.5){
+        if((c.capitalization == "random" && Math.random() >0.5) || c.capitalization == "all"){
             letter = letter.toUpperCase()
         }
     }

@@ -41,6 +41,13 @@ v.d.worldData.cultures["IRS"] = {
     capitalization:"none"
 }
 
+v.d.worldData.cultures["morse"] = {
+    vowels:["·"," "],
+    consonants:["-"],
+    name:"morse",
+    capitalization:"none"
+}
+
 
 
 setInterval(function(){
