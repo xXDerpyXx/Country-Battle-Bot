@@ -9,7 +9,7 @@ if(v.d.worldData == null){
 
 v.d.worldData.cultures["gay"] = {
     vowels:["a","y"],
-    constanants:["g"],
+    consonants:["g"],
     name:"gay"
 }
 
@@ -43,9 +43,3 @@ v.client.on('message', msg => {
         }
     }
 });
-
-function main() {
-
-}
-
-main();
