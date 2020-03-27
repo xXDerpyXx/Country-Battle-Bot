@@ -10,24 +10,28 @@ if(v.d.worldData == null){
 v.d.worldData.cultures["gay"] = {
     vowels:["a","y"],
     consonants:["g"],
-    name:"gay"
+    name:"gay",
+    capitalization:"start"
 }
 v.d.worldData.cultures["retard"] = {
     vowels:["a","e","u"],
     consonants:["r","t","d","h"],
-    name:"retard"
+    name:"retard",
+    capitalization:"random"
 }
 
 v.d.worldData.cultures["cabrikk"] = {
     vowels:["ā","ē","ī","ō","ū"],
     consonants:["ḃ", "ċ", "ḋ",  "ḳ", "ŀ", "ṅ", "ṗ", "ṛ"],
-    name:"cabrikk"
+    name:"cabrikk",
+    capitalization:"start"
 }
 
 v.d.worldData.cultures["furry"] = {
     vowels:["u","o"],
     consonants:["w","x","3","n"],
-    name:"furry"
+    name:"furry",
+    capitalization:"start"
 }
 
 

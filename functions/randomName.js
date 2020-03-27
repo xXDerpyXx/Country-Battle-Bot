@@ -8,6 +8,10 @@ module.exports = function randomName(c) {
         type = "v"
     }
     var letter = v.fn.pickLetter(type,c);
+    if(c.capitalization == "start" || (c.capitalization == "random" && Math.random() >0.5)){
+        letter = letter.toUpperCase()
+    }
+    
     for(var i = 0; i < (Math.random()*20)+1; i++) {
         if(vowels.includes(letter)) {
             type = "v"
@@ -16,6 +20,9 @@ module.exports = function randomName(c) {
         }
         output = output+""+letter;
         letter = v.fn.pickLetter(type,c);
+        if(c.capitalization == "random" && Math.random() >0.5){
+            letter = letter.toUpperCase()
+        }
     }
     return output;
 }
