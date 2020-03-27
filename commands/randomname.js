@@ -5,7 +5,7 @@ module.exports = new v.c.cmd.Command(
         if(v.d.worldData.cultures[args.culture] == null){
             return "that isn't a culture"
         }
-        return v.fn.randomName(args.culture);
+        return v.fn.randomName(v.d.worldData.cultures[args.culture]);
     },
 
     {
