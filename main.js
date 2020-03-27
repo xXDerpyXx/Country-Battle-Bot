@@ -43,9 +43,3 @@ v.client.on('message', msg => {
         }
     }
 });
-
-function main() {
-
-}
-
-main();
