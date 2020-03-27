@@ -31,7 +31,7 @@ v.client.on('message', msg => {
         if (commands[command]) { //if the command called exists,
             command = commands[command];
             msg.channel.send((() => {
-                if (command.adminOnly && !v.d.settings.admins.includes(msg.author.id)) { //if the command is an admin only command but the user isn't an admin
+                if (command.options.adminOnly && !v.d.settings.admins.includes(msg.author.id)) { //if the command is an admin only command but the user isn't an admin
                     return 'Only admins can use that command.'; //tell off the user
                 }
                 args = command.parseArgs(args);
