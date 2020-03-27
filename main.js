@@ -55,6 +55,13 @@ v.d.worldData.cultures["angery"] = {
     capitalization:"all"
 }
 
+v.d.worldData.cultures["shwubalub"] = {
+    vowels:["w","b", "h", "l", "sh", "sh"],
+    consonants:["u","e","a","o"],
+    name:"shwubalub",
+    capitalization:"start"
+}
+
 
 
 setInterval(function(){
