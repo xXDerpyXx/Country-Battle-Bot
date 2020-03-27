@@ -7,7 +7,7 @@ module.exports = new v.c.cmd.Command(
         }
         let output = String();
         for (let i = 0; i < args.amount; i++) {
-            output += `${v.fn.randomName(v.d.worldData.cultures[args.culture])}\n`;
+            output += v.fn.randomName(v.d.worldData.cultures[args.culture]) + (args.amount <= 25 ? '\n' : ' '); 
         }
         return `\`\`\`${output}\`\`\``;
     },
@@ -25,7 +25,7 @@ module.exports = new v.c.cmd.Command(
                 {
                     type: 'int',
                     min: 1,
-                    max: 25,
+                    max: 150,
                     default: 1,
                     required: false
                 }
