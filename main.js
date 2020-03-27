@@ -12,6 +12,25 @@ v.d.worldData.cultures["gay"] = {
     consonants:["g"],
     name:"gay"
 }
+v.d.worldData.cultures["retard"] = {
+    vowels:["a","e","u"],
+    consonants:["r","t","d","h"],
+    name:"retard"
+}
+
+v.d.worldData.cultures["cabrikk"] = {
+    vowels:["ā","ē","ī","ō","ū"],
+    consonants:["ḃ", "ċ", "ḋ",  "ḳ", "ŀ", "ṅ", "ṗ", "ṛ"],
+    name:"cabrikk"
+}
+
+v.d.worldData.cultures["furry"] = {
+    vowels:["u","o"],
+    consonants:["w","x","3","n"],
+    name:"furry"
+}
+
+
 
 setInterval(function(){
     for(var k in v.d.people){
