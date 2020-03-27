@@ -19,7 +19,7 @@ module.exports = new v.c.cmd.Command(
                     argsDesc += `\`${i}\`${output[i]}`;
                 }
                 return `\`${v.d.settings.prefix}${args.cmd}${(Object.keys(output).length > 0 ? ` {${Object.keys(output).join('} {')}}` : ``)}\`: ${cmd.options.description}\n\n${argsDesc}`;
-            } else return 'That command doesn\'t exist.';
+            } else return 'You can\'t get help on a command which doesn\'t exist.';
         } else {
             let output = String();
             for (i of Object.keys(commands).sort()) {
