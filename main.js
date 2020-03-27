@@ -48,10 +48,10 @@ v.d.worldData.cultures["morse"] = {
     capitalization:"none"
 }
 
-v.d.worldData.cultures["anger"] = {
+v.d.worldData.cultures["angery"] = {
     vowels:["e","a"],
     consonants:["g","h","!"],
-    name:"anger",
+    name:"angery",
     capitalization:"all"
 }
 
