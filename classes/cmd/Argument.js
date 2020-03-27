@@ -35,8 +35,8 @@ module.exports = class Argument {
                 arg = (Number(arg));
                 if (!isNaN(arg)) {
                     if (this.options.type == 'int' && !Number.isInteger(arg)) return err('must be an integer.');
-                    if (this.options.min && arg < this.options.min) return err(`must be more than ${this.options.min}.`);
-                    if (this.options.max && arg > this.options.max) return err(`must be less than ${this.options.max}.`);
+                    if (this.options.min && arg < this.options.min) return err(`must at least ${this.options.min}.`);
+                    if (this.options.max && arg > this.options.max) return err(`must at most ${this.options.max}.`);
                 } else return err('must be a number.');
                 break;
         }
