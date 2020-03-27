@@ -19,7 +19,7 @@ module.exports = new v.c.cmd.Command(
             new v.c.cmd.Argument(
                 'culture',
                 {
-                    description: 'Which culture\'s language\'s names will be generated for.',
+                    description: 'Which culture\'s language names will be generated for.',
 
                     type: 'string'
                 }
