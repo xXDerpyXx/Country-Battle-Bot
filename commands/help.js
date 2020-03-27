@@ -31,7 +31,7 @@ module.exports = new v.c.cmd.Command(
                     output += `${i}\n`;
                 }
             }
-            return `Type \`${v.d.settings.prefix}help {command}\` to get help on a specific command.\nHere are all the commands.\n\`\`\`${output}\`\`\``;
+            return `Type \`${v.d.settings.prefix}help {command}\` to get help on a specific command.\nHere are all the commands.\n\`\`\`\n${output}\`\`\``;
         }
     },
     
