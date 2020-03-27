@@ -338,11 +338,7 @@ client.on('message', msg => {
     }
 
     if(content[0] == prefix+"personcount"){
-        var num = 0;
-        for(var k in people){
-            num++;
-        }
-        msg.channel.send(num);
+        msg.channel.send(Object.keys(people).length);
     }
     
     if(content[0] == prefix+"inbound"){

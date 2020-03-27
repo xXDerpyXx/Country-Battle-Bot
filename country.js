@@ -7,6 +7,9 @@ class Country {
 		this.econStance;
 		this.polStance;
 
+		this.government;
+		this.economy = "capitalism"
+
 		this.population;
 
 		this.money = 0;
