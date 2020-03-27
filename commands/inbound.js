@@ -6,7 +6,7 @@ module.exports = new v.c.cmd.Command(
     },
 
     {
-        description: 'Tells you if a set of coordinates are in the bounds of the map.',
+        description: 'Tells you if a set of coordinates are within the bounds of the map.',
 
         args: [
             new v.c.cmd.Argument(
