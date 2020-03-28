@@ -7,61 +7,8 @@ if(v.d.worldData == null){
     }
 }
 
-v.d.worldData.cultures["gay"] = {
-    vowels:["a","y"],
-    consonants:["g"],
-    name:"gay",
-    capitalization:"start"
-}
-v.d.worldData.cultures["retard"] = {
-    vowels:["a","e","u"],
-    consonants:["r","t","d","h"],
-    name:"retard",
-    capitalization:"random"
-}
-
-v.d.worldData.cultures["cabrikk"] = {
-    vowels:["ā","ē","ī","ō","ū"],
-    consonants:["ḃ", "ċ", "ḋ",  "ḳ", "ŀ", "ṅ", "ṗ", "ṛ"],
-    name:"cabrikk",
-    capitalization:"start"
-}
-
-v.d.worldData.cultures["furry"] = {
-    vowels:["u","o"],
-    consonants:["w","x","3","n"],
-    name:"furry",
-    capitalization:"start"
-}
-
-v.d.worldData.cultures["IRS"] = {
-    vowels:["r","u"],
-    consonants:["b","r"],
-    name:"IRS",
-    capitalization:"none"
-}
-
-v.d.worldData.cultures["morse"] = {
-    vowels:["·"," "],
-    consonants:["-"],
-    name:"morse",
-    capitalization:"none"
-}
-
-v.d.worldData.cultures["angery"] = {
-    vowels:["e","a"],
-    consonants:["g","h","!"],
-    name:"angery",
-    capitalization:"all"
-}
-
-v.d.worldData.cultures["shwubalub"] = {
-    vowels:["w","b", "h", "l", "sh", "sh"],
-    consonants:["u","e","a","o"],
-    name:"shwubalub",
-    capitalization:"start"
-}
-
+//add all already defined funny cultures to the world's cultures - Note: do this after generating the random cultures
+v.d.worldData.cultures = Object.assign(v.d.worldData.cultures, v.consts.funnyCultures);
 
 
 setInterval(function(){

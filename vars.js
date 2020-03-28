@@ -4,14 +4,16 @@ const discord = require('discord.js');
 var client = new discord.Client();
 client.login(require("./token.js"));
 
-var c = requireDir('./classes', {recurse: true})
-var fn = requireDir('./functions', {recurse: true})
-var d = requireDir('./data', {recurse: true})
+var c = requireDir('./classes', {recurse: true});
+var fn = requireDir('./functions', {recurse: true});
+var d = requireDir('./data', {recurse: true});
+var consts = requireDir('./consts', {recurse: true});
 
 module.exports = {
     c: c,
     d: d,
     fn: fn,
+    consts: consts,
     modules: {
         discord: discord,
         fs: require('fs'),
