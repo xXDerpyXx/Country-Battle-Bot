@@ -4,13 +4,13 @@ const defaultOptions = {
     'required': true,
     'default': null, //only use this if options.required is false - sets the argument to this if no data is provided
 
-    //if type is string use these
+    //if type is string you should use these
     'minLength': 1,
     'maxLength': 16,
 
-    //if type is int or float use these
+    //if type is int or float you should use these
     'min': null,
-    'max': null
+    'max': null,
 }
 
 module.exports = class Argument {

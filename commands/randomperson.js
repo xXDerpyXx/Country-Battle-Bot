@@ -5,7 +5,7 @@ module.exports = new v.c.cmd.Command(
         var output = String();
         var p = v.fn.randomProperty(v.d.people);
         if(p == undefined || p.id == undefined){
-            return 'No Person Found'
+            return 'No person found';
         }
         for(let k in p){
             output += `   ${k}: ${p[k]}\n`;
@@ -14,6 +14,6 @@ module.exports = new v.c.cmd.Command(
     },
 
     {
-        description: 'Gives you the information of a random person.'
+        description: 'Gives you the information of a random person.',
     }
 );

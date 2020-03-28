@@ -30,7 +30,7 @@ module.exports = new v.c.cmd.Command(
                 {
                     description: 'The name of the setting to change.',
 
-                    required: true
+                    required: true,
                 }
             ),
             new v.c.cmd.Argument(
@@ -38,9 +38,9 @@ module.exports = new v.c.cmd.Command(
                 {
                     description: 'What to change the setting to.',
                     
-                    required: true
+                    required: true,
                 }
-            )
-        ]
+            ),
+        ],
     }
 );

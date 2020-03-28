@@ -14,6 +14,6 @@ module.exports = new v.c.cmd.Command(
     },
 
     {
-        description: 'Displays a list of all the cultures and info about them.'
+        description: 'Displays a list of all the cultures and info about them.',
     }
 );

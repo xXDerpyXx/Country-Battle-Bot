@@ -3,42 +3,42 @@ module.exports = {
         vowels:["a","e","u"],
         consonants:["r","t","d","h"],
         name:"retard",
-        capitalization:"random"
+        capitalization:"random",
     },
 
     cabrikk: {
         vowels:["ā","ē","ī","ō","ū"],
         consonants:["ḃ", "ċ", "ḋ",  "ḳ", "ŀ", "ṅ", "ṗ", "ṛ"],
         name:"cabrikk",
-        capitalization:"start"
+        capitalization:"start",
     },
 
     furry: {
         vowels:["u","o"],
         consonants:["w","x","3","n"],
         name:"furry",
-        capitalization:"start"
+        capitalization:"start",
     },
 
     IRS: {
         vowels:["r","u"],
         consonants:["b","r"],
         name:"IRS",
-        capitalization:"none"
+        capitalization:"none",
     },
 
     morse: {
         vowels:["·"," "],
         consonants:["-"],
         name:"morse",
-        capitalization:"none"
+        capitalization:"none",
     },
 
     angery: {
         vowels:["e","a"],
         consonants:["g","h","!"],
         name:"angery",
-        capitalization:"all"
+        capitalization:"all",
     },
 
     /*  UNFUNNY
@@ -46,7 +46,7 @@ module.exports = {
         vowels:["a","y"],
         consonants:["g"],
         name:"gay",
-        capitalization:"start"
+        capitalization:"start",
     },
     */
 }

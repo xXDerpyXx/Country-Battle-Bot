@@ -7,22 +7,22 @@ module.exports = function asciiMap(xq,yq,size){
             if(v.fn.map.oob(x,y)){
                 var s = v.fn.map.seaHeight(v.d.map[x][y].elevation);
                 if(s <= 0){
-                    output +="~"
+                    output +="~";
                 }else if(s <= 1){
-                    output +="."
+                    output +=".";
                 }else if(s <= 3){
-                    output +=","
+                    output +=",";
                 }else if(s <= 6){
-                    output +="-"
+                    output +="-";
                 }else{
-                    output +="^"
+                    output +="^";
                 }
                //output += v.fn.map.seaHeight(v.d.map[x][y].elevation);
             }else{
-                output +=" "
+                output +=" ";
             }
         }
-        output += "\n"
+        output += "\n";
     }
     return output;
 }

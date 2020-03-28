@@ -14,7 +14,7 @@ module.exports = new v.c.cmd.Command(
                 {
                     description: 'The... x coordinate to check..? This one\'s kinda self-explanatory.',
 
-                    type: 'int'
+                    type: 'int',
                 }
             ),
             new v.c.cmd.Argument(
@@ -22,9 +22,9 @@ module.exports = new v.c.cmd.Command(
                 {
                     description: 'The... y coordinate to check..? This one\'s kinda self-explanatory.',
 
-                    type: 'int'
+                    type: 'int',
                 }
-            )
+            ),
         ]
     }
 );

@@ -6,6 +6,6 @@ module.exports = new v.c.cmd.Command(
     },
 
     {
-        description: 'Tells you how many people there are.'
+        description: 'Tells you how many people there are.',
     }
 );

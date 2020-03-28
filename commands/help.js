@@ -4,7 +4,7 @@ module.exports = new v.c.cmd.Command(
     (args, msg) => {
         var commands = v.modules.requireDir('./commands');
         if (args.cmd) { //if the user has specified a command to get help on
-            cmd = commands[args.cmd]
+            cmd = commands[args.cmd];
             if (cmd) {
                 let output = Object();
                 for (let arg of cmd.options.args) {
@@ -43,9 +43,9 @@ module.exports = new v.c.cmd.Command(
                 {
                     description: 'Which command to get help on. If not supplied, a list of commands will be shown.',
 
-                    required: false
+                    required: false,
                 }
-            )
-        ]
+            ),
+        ],
     }
 );

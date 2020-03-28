@@ -7,7 +7,7 @@ module.exports = function genMap(){
         map[x] = Array();
         for(var y = 0; y < v.d.settings.height; y++){
             map[x][y] = new v.c.Tile(x,y);
-            map[x][y].elevation = Math.round(v.d.settings.seaLevel+((Math.random()*v.d.settings.variation)-v.d.settings.baseHeight))
+            map[x][y].elevation = Math.round(v.d.settings.seaLevel+((Math.random()*v.d.settings.variation)-v.d.settings.baseHeight));
         }
     }
     /*
@@ -38,7 +38,7 @@ module.exports = function genMap(){
                     }
                 }
                 tempMap[x][y].elevation = total/count;
-                tempMap[x][y].elevation += (Math.random()*v.d.settings.wackyness)-(v.d.settings.wackyness/2)
+                tempMap[x][y].elevation += (Math.random()*v.d.settings.wackyness)-(v.d.settings.wackyness/2);
             }
         }
         map = tempMap;

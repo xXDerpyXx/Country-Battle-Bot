@@ -12,6 +12,6 @@ module.exports = new v.c.cmd.Command(
     {
         description: 'Displays all the current settings.',
 
-        adminOnly: true
+        adminOnly: true,
     }
 );

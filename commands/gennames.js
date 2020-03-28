@@ -21,7 +21,7 @@ module.exports = new v.c.cmd.Command(
                 {
                     description: 'Which culture\'s language names will be generated for.',
 
-                    type: 'string'
+                    type: 'string',
                 }
             ),
             new v.c.cmd.Argument(
@@ -35,7 +35,7 @@ module.exports = new v.c.cmd.Command(
                     default: 1,
                     required: false,
                 }
-            )
+            ),
         ]
     }
 );
