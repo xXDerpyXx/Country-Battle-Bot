@@ -1,7 +1,8 @@
 var v = require.main.require('./vars.js');
 
 module.exports = new v.c.cmd.Command(
-    (args, msg) => {
+    async (args, msg) => {
+        await v.fn.discord.showLoading(msg);
         v.fn.map.genMap();
         return 'Map made.';
     },
