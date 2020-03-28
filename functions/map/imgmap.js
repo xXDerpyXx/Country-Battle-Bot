@@ -19,7 +19,7 @@ module.exports = function imgmap(cx,cy, scale = 50, radius = 50, map){
                 ctx.fillRect((x * scale)+xoffset, (y*scale)+yoffset, scale, scale);
                 continue;
             }else{
-                if(map[x][y] == null){
+                if(!map[x] || !map[x][y]){
                     ctx.fillStyle = "#000000";
                     ctx.fillRect((x-radius) * scale, (y-radius)*scale, scale, scale);
                     continue;
