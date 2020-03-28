@@ -25,6 +25,6 @@ module.exports = new v.c.cmd.Command(
                     type: 'int',
                 }
             ),
-        ]
+        ],
     }
 );

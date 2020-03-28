@@ -1,13 +1,22 @@
 const requireDir = require('require-dir');
+const fs = require('fs');
 const {createCanvas} = require("canvas");
 const discord = require('discord.js');
 var client = new discord.Client();
 client.login(require("./token.js"));
 
-var c = requireDir('./classes', {recurse: true});
-var fn = requireDir('./functions', {recurse: true});
+const c = requireDir('./classes', {recurse: true});
+const fn = requireDir('./functions', {recurse: true});
+const consts = requireDir('./consts', {recurse: true});
+
+for (i in consts.defaultFiles) {
+    let path = `${process.cwd()}/data/${i}`;
+    if (!fs.existsSync(path)) { //If a data file doesn't exist,
+        fs.writeFileSync(path, JSON.stringify(consts.defaultFiles[i]), 'utf8'); //create it with the default value
+    }
+}
+
 var d = requireDir('./data', {recurse: true});
-var consts = requireDir('./consts', {recurse: true});
 
 module.exports = {
     c: c,
@@ -16,10 +25,10 @@ module.exports = {
     consts: consts,
     modules: {
         discord: discord,
-        fs: require('fs'),
+        fs: fs,
         requireDir: requireDir,
         canvas: require('canvas'),
-        createCanvas: createCanvas
+        createCanvas: createCanvas,
     },
-    client: client
+    client: client,
 };
