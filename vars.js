@@ -9,6 +9,7 @@ const c = requireDir('./classes', {recurse: true});
 const fn = requireDir('./functions', {recurse: true});
 const consts = requireDir('./consts', {recurse: true});
 
+if (!fs.existsSync(`${process.cwd()}/data`)) fs.mkdirSync('data'); //If the data folder doesn't exist (it won't upon new clone because the directory is empty), create it
 for (i in consts.defaultFiles) {
     let path = `${process.cwd()}/data/${i}`;
     if (!fs.existsSync(path)) { //If a data file doesn't exist,
