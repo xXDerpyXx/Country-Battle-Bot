@@ -35,6 +35,12 @@ var cultures = {
         capitalization:"all",
     },
 
+    gamer: {
+        vowels:["gamer","weed"],
+        consonants:["xx","420","epic","s3x","god","69"],
+        capitalization:"random",
+    },
+
     /*  UNFUNNY
     gay: {
         vowels:["a","y"],
