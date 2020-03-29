@@ -16,6 +16,9 @@ module.exports = {
         wackyness: 0.4,
         shoreHeight: 0.3,
         mountainHeight: 3,
+        rivers: true,
+        riverChance: 0.999,
+        riverDepth: 2,
         
         prefix: '$',
         genocide: true,

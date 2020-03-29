@@ -43,8 +43,8 @@ module.exports = function genMap(seed){
                 let total = 0;
                 let count = 0;
 
-                if(v.d.mapInfo.smoothness-2 == k){
-                    if(v.d.map[x][y].elevation > v.d.mapInfo.seaLevel-1 && v.d.map[x][y].elevation < v.d.mapInfo.seaLevel+0.25 && rand.random() > 0.999){
+                if(v.d.mapInfo.smoothness-2 == k && v.mapInfo.rivers){
+                    if(v.d.map[x][y].elevation > v.d.mapInfo.seaLevel-1 && v.d.map[x][y].elevation < v.d.mapInfo.seaLevel+0.25 && rand.random() > v.d.mapInfo.riverChance){
                         var rx = x;
                         var ry = y;
                         var dir = rand.random()*360;
@@ -63,7 +63,7 @@ module.exports = function genMap(seed){
                             if(!v.fn.map.oob(Math.round(rx),Math.round(ry))){
                                 break;
                             }
-                            v.d.map[Math.round(rx)][Math.round(ry)].elevation=v.d.mapInfo.seaLevel-2;
+                            v.d.map[Math.round(rx)][Math.round(ry)].elevation=v.d.mapInfo.seaLevel-v.d.mapInfo.riverDepth;
                         }
                     }
                 }
