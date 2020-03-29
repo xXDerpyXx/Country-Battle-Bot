@@ -37,10 +37,15 @@ v.client.on('ready', () => {
                     }
                     args = command.parseArgs(args);
                     if (typeof args == 'string') return args;
-                    let output = await command.fn(args, msg); //run the function of the command
-                    v.fn.save(); //save any changes that were made
-                    if (typeof output == 'string' && output.length > 2000) return ('Command run successfully, but the output was over 2000 characters long and couldn\'t be sent entirely. Here\'s the beginning of it:\n\n' + output).slice(0, 2000); //if the generated message was too long to be sent as a discord message, tell the user their command was successful
-                    return output; //send the message returned by the command's function
+                    try {
+                        let output = await command.fn(args, msg); //run the function of the command
+                        v.fn.save(); //save any changes that were made
+                        if (typeof output == 'string' && output.length > 2000) return ('Command run successfully, but the output was over 2000 characters long and couldn\'t be sent entirely. Here\'s the beginning of it:\n\n' + output).slice(0, 2000); //if the generated message was too long to be sent as a discord message, tell the user their command was successful
+                        return output; //send the message returned by the command's function
+                    } catch (err) {
+                        console.log(err);
+                        return 'Error running command. Alert an admin.';
+                    }
                 })());
             }
         }

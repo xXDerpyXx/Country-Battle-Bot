@@ -11,11 +11,11 @@ module.exports = new v.c.cmd.Command(
         var tilescale = pixelcount/radius;
         
         if(!args.width){
-            temp = v.fn.map.imgmap(Math.round(v.d.settings.width/2),Math.round(v.d.settings.height/2),tilescale,radius,v.d.map);
+            temp = v.fn.map.imgmap(Math.round(v.d.mapInfo.width/2),Math.round(v.d.mapInfo.height/2),tilescale,radius,v.d.map);
         }else{
             temp = v.fn.map.imgmap(Math.round(parseInt(args.latitude)),Math.round(parseInt(args.longitude)),tilescale,radius,v.d.map);
         }
-        return new v.modules.discord.MessageAttachment(temp, "image.png");
+        return new v.modules.discord.MessageAttachment(temp, 'map.png', 'image.png');
     },
     
     {
