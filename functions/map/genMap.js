@@ -96,10 +96,14 @@ module.exports = function genMap(seed){
     for(let x = 0; x < v.d.mapInfo.width; x++){
         for(let y = 0; y < v.d.mapInfo.height; y++){
             //v.d.map[x][y].elevation = Math.round(v.d.map[x][y].elevation)
-            if(v.fn.map.seaHeight(v.d.map[x][y].elevation) > 0){
+            if(v.fn.map.seaHeight(v.d.map[x][y].elevation) > 0 && rand.random() > 0.99){
                 //console.log(v.fn.map.seaHeight(v.d.map[x][y].elevation))
-                let id = v.fn.uuid(v.d.people);
-                v.d.people[id] = new v.c.Person(id,x,y,v.fn.randomProperty(v.d.worldData.cultures));
+                
+                var culture = v.fn.randomProperty(v.d.worldData.cultures);
+                for(var i = 0; i < 200; i++){
+                    let id = v.fn.uuid(v.d.people);
+                    v.d.people[id] = new v.c.Person(id,x,y,culture);
+                }
             }
         }
     }
