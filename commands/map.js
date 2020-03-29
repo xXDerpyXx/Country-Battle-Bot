@@ -41,6 +41,7 @@ module.exports = new v.c.cmd.Command(
                 {
                     type: 'int',
                     required: false,
+                    max:100,
                 }
             ),
         ],
