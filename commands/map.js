@@ -15,7 +15,7 @@ module.exports = new v.c.cmd.Command(
         }else{
             temp = v.fn.map.imgmap(Math.round(parseInt(args.latitude)),Math.round(parseInt(args.longitude)),tilescale,radius,v.d.map);
         }
-        return new v.modules.discord.MessageAttachment(temp, "image.png");
+        return new v.modules.discord.MessageAttachment(temp, 'map.png', 'image.png');
     },
     
     {
