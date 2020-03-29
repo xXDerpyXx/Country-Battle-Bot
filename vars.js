@@ -30,6 +30,7 @@ module.exports = {
         requireDir: requireDir,
         canvas: require('canvas'),
         createCanvas: createCanvas,
+        rs: require('random-seed'),
     },
     client: client,
 };

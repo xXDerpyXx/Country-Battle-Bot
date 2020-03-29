@@ -1,5 +1,6 @@
-module.exports = function genMap(){
+module.exports = function genMap(seed){
     var v = require.main.require('./vars.js');
+    let rand = v.modules.rs(seed);
     
     v.d.people = Object();
     v.d.map = Array();
@@ -7,13 +8,13 @@ module.exports = function genMap(){
         v.d.map[x] = Array();
         for(var y = 0; y < v.d.settings.height; y++){
             v.d.map[x][y] = new v.c.Tile(x,y);
-            v.d.map[x][y].elevation = Math.round(v.d.settings.seaLevel+((Math.random()*v.d.settings.variation)-v.d.settings.baseHeight));
+            v.d.map[x][y].elevation = Math.round(v.d.settings.seaLevel+((rand.random()*v.d.settings.variation)-v.d.settings.baseHeight));
         }
     }
     /*
     for(var i = 0; i < v.d.settings.islands; i++){
-        var a = Math.floor(Math.random()*v.d.settings.width);
-        var b = Math.floor(Math.random()*v.d.settings.height);
+        var a = Math.floor(rand.random()*v.d.settings.width);
+        var b = Math.floor(rand.random()*v.d.settings.height);
         console.log(a+","+b)
         if(v.fn.map.oob(a,b)){
             console.log("island made "+v.d.settings.islandSize);
@@ -38,7 +39,7 @@ module.exports = function genMap(){
                     }
                 }
                 tempMap[x][y].elevation = total/count;
-                tempMap[x][y].elevation += (Math.random()*v.d.settings.wackyness)-(v.d.settings.wackyness/2);
+                tempMap[x][y].elevation += (rand.random()*v.d.settings.wackyness)-(v.d.settings.wackyness/2);
             }
         }
         v.d.map = tempMap;
