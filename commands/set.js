@@ -2,7 +2,7 @@ var v = require.main.require('./vars.js');
 
 module.exports = new v.c.cmd.Command(
     (args, msg) => {
-        if (v.d.settings[args.setting]) {
+        if (v.d.settings.hasOwnProperty(args.setting)) {
             switch (typeof(v.d.settings[args.setting])) {
                 case 'number':
                     let num = parseFloat(args.newValue);
@@ -15,6 +15,8 @@ module.exports = new v.c.cmd.Command(
                 case 'string':
                     v.d.settings[args.setting] = args.newValue;
                     break;
+                default:
+                    return 'This setting can\'t be changed.';
             }
             return 'Setting changed!';
         } else return 'That isn\'t a valid setting.';
