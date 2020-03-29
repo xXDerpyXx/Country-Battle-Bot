@@ -23,13 +23,13 @@ module.exports = new v.c.cmd.Command(
         } else {
             let output = String();
             for (i of Object.keys(commands).sort()) {
-                if (commands[i].options.adminOnly) {
-                    if (v.d.settings.admins.includes(msg.author.id)) {
-                        output += `${i}\n`;
-                    }
-                } else {
-                    output += `${i}\n`;
+                let command = commands[i];
+                if (command.options.adminOnly && !v.d.settings.admins.includes(msg.author.id)) continue;
+                let output2 = String();
+                for (let arg of command.options.args) {
+                    output2 += ` {${arg.name}}`;
                 }
+                output += i+output2+'\n';
             }
             return `Type \`${v.d.settings.prefix}help {command}\` to get help on a specific command.\nHere are all the commands.\n\`\`\`\n${output}\`\`\``;
         }
