@@ -27,11 +27,11 @@ module.exports = function imgmap(cx,cy, scale = 50, radius = 50, map){
                 var e = v.fn.map.seaHeight(map[x][y].elevation);
                 if(e <= 0){
                     ctx.fillStyle = "rgb(10,10,200)";
-                }else if(e <= v.d.settings.shoreHeight){
+                }else if(e <= v.d.mapInfo.shoreHeight){
                     var temp = 230 - (e*10)
                     temp = Math.round(temp);
                     ctx.fillStyle = "rgb("+(temp)+","+(temp)+","+(182)+")";
-                }else if(e <= v.d.settings.mountainHeight){
+                }else if(e <= v.d.mapInfo.mountainHeight){
                     var temp = 150-(e*20);
                     temp = Math.round(temp);
                     ctx.fillStyle = "rgb("+(60)+","+(temp+00)+","+(30)+")";
