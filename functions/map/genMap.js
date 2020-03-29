@@ -43,13 +43,13 @@ module.exports = function genMap(seed){
                 let total = 0;
                 let count = 0;
 
-                if(v.d.settings.smoothness-2 == k){
-                    if(v.d.map[x][y].elevation > v.d.settings.seaLevel-1 && v.d.map[x][y].elevation < v.d.settings.seaLevel+0.25 && rand.random() > 0.999){
+                if(v.d.mapInfo.smoothness-2 == k){
+                    if(v.d.map[x][y].elevation > v.d.mapInfo.seaLevel-1 && v.d.map[x][y].elevation < v.d.mapInfo.seaLevel+0.25 && rand.random() > 0.999){
                         var rx = x;
                         var ry = y;
                         var dir = rand.random()*360;
                         var steerAcceleration = 1;
-                        for(var i = 0; i < (rand.random()*v.d.settings.width*2)+(v.d.settings.width*5);i++){
+                        for(var i = 0; i < (rand.random()*v.d.mapInfo.width*2)+(v.d.mapInfo.width*5);i++){
                             dir += (rand.random()*steerAcceleration)-(steerAcceleration/2);
                             var vec = {"x":Math.cos(dir),"y":Math.sin(dir)};
                             if(steerAcceleration < 0){
@@ -63,7 +63,7 @@ module.exports = function genMap(seed){
                             if(!v.fn.map.oob(Math.round(rx),Math.round(ry))){
                                 break;
                             }
-                            v.d.map[Math.round(rx)][Math.round(ry)].elevation=v.d.settings.seaLevel-2;
+                            v.d.map[Math.round(rx)][Math.round(ry)].elevation=v.d.mapInfo.seaLevel-2;
                         }
                     }
                 }
@@ -86,15 +86,15 @@ module.exports = function genMap(seed){
         v.d.map = tempMap;
     }
 
-    for(let x = 0; x < v.d.settings.width; x++){
-        for(let y = 0; y < v.d.settings.height; y++){
+    for(let x = 0; x < v.d.mapInfo.width; x++){
+        for(let y = 0; y < v.d.mapInfo.height; y++){
             
         }
     }
 
 
-    for(let x = 0; x < v.d.settings.width; x++){
-        for(let y = 0; y < v.d.settings.height; y++){
+    for(let x = 0; x < v.d.mapInfo.width; x++){
+        for(let y = 0; y < v.d.mapInfo.height; y++){
             //v.d.map[x][y].elevation = Math.round(v.d.map[x][y].elevation)
             if(v.fn.map.seaHeight(v.d.map[x][y].elevation) > 0){
                 //console.log(v.fn.map.seaHeight(v.d.map[x][y].elevation))
