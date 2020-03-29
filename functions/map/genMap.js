@@ -13,7 +13,7 @@ module.exports = function genMap(seed){
     v.d.mapInfo = {
         seed: seed,
     };
-    for (i of ['width', 'height', 'seaLevel', 'baseHeight', 'variation', 'smoothness', 'wackyness', 'shoreHeight', 'mountainHeight', 'genocide']) {
+    for (i of ['width', 'height', 'seaLevel', 'baseHeight', 'variation', 'smoothness', 'wackyness', 'shoreHeight', 'mountainHeight', 'genocide',"rivers","riverChance","riverDepth"]) {
         v.d.mapInfo[i] = v.d.settings[i];
     }
     
@@ -43,8 +43,8 @@ module.exports = function genMap(seed){
                 let total = 0;
                 let count = 0;
 
-                if(v.d.mapInfo.smoothness-2 == k && v.mapInfo.rivers){
-                    if(v.d.map[x][y].elevation > v.d.mapInfo.seaLevel-1 && v.d.map[x][y].elevation < v.d.mapInfo.seaLevel+0.25 && rand.random() > v.d.mapInfo.riverChance){
+                if(v.d.mapInfo.smoothness-2 == k && v.d.mapInfo.rivers){
+                    if(v.d.map[x][y].elevation > v.d.mapInfo.seaLevel-1 && v.d.map[x][y].elevation < v.d.mapInfo.seaLevel+0.25 && rand.random() < v.d.mapInfo.riverChance){
                         var rx = x;
                         var ry = y;
                         var dir = rand.random()*360;

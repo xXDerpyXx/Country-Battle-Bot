@@ -15,8 +15,15 @@ module.exports = new v.c.cmd.Command(
                 case 'string':
                     v.d.settings[args.setting] = args.newValue;
                     break;
+                case 'boolean':
+                    if(args.newValue == "true"){
+                        v.d.settings[args.setting] = true;
+                    }else{
+                        v.d.settings[args.setting] = false;
+                    }
+                    break;
                 default:
-                    return 'This setting can\'t be changed.';
+                    return typeof(v.d.settings[args.setting])+' type settings can not be changed';
             }
             return 'Setting changed!';
         } else return 'That isn\'t a valid setting.';
