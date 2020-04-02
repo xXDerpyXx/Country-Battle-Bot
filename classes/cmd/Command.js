@@ -11,15 +11,15 @@ module.exports = class Command {
     }
 
     parseArgs(args) {
-        if (args.length <= this.options.args.length) {
+        if (args.length <= this.options.args.length) { //As long as there isn't more arguments than there should be
             let parsedArgs = Object();
             for (let i = 0; i < this.options.args.length; i++) {
                 let arg = this.options.args[i];
-                if (args[i]) {
+                if (args[i] != null) {
                     let parsedArg = arg.parse(args[i]);
                     if (typeof parsedArg == 'object' && parsedArg.hasOwnProperty('err')) {
                         return parsedArg.err;
-                    } else  {
+                    } else {
                         parsedArgs[arg.name] = parsedArg;
                     }
                 } else if (arg.options.required) return `${arg.argName()} must be provided.`;

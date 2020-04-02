@@ -3,8 +3,7 @@ var v = require.main.require('./vars.js');
 module.exports = new v.c.cmd.Command(
     async (args, msg) => {
         await v.fn.discord.showLoading(msg);
-        let seed = msg.id;
-        if (args.seed) seed = args.seed;
+        let seed = (args.seed != null ? args.seed : msg.id);
         v.fn.map.genMap(seed);
         return `Map made with seed \`${seed}\`.`;
     },

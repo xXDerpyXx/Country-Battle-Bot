@@ -7,6 +7,8 @@ module.exports = function randomName(c) {
     if(Math.random() > 0.5) { // 5/10 of the time,
         type = "v";
     }
+
+    //Generate a random first letter and capitalise it based on the language's naming rules
     var letter = v.fn.pickLetter(type,c);
     if(c.capitalization == "start" || (c.capitalization == "random" && Math.random() >0.5)|| c.capitalization == "all"){
         letter = letter.toUpperCase();

@@ -3,7 +3,7 @@ var v = require.main.require('./vars.js');
 module.exports = new v.c.cmd.Command(
     (args, msg) => {
         if(v.d.worldData.cultures[args.culture] == null){
-            return "that isn't a culture"
+            return "that isn't a culture";
         }
         let output = String();
         for (let i = 0; i < args.amount; i++) {

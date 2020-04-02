@@ -1,5 +1,6 @@
 const requireDir = require('require-dir');
 const fs = require('fs');
+const rs = require('random-seed');
 const {createCanvas} = require("canvas");
 const discord = require('discord.js');
 var client = new discord.Client();
@@ -30,7 +31,8 @@ module.exports = {
         requireDir: requireDir,
         canvas: require('canvas'),
         createCanvas: createCanvas,
-        rs: require('random-seed'),
+        rs: rs,
     },
     client: client,
+    rand: new rs()
 };

@@ -20,9 +20,8 @@ module.exports = class Argument {
     }
 
     parse(arg) {
-        let argName = this.argName();
         var err = (err) => {
-            return {err: `${argName} ${err}`}
+            return {err: `${this.argName()} ${err}`}
         }
         switch(this.options.type) {
             case 'string':
