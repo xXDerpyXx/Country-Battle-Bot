@@ -15,7 +15,7 @@ module.exports = {
         smoothness: 20,
         wackyness: 0.4,
         shoreHeight: 0.3,
-        mountainHeight: 3,
+        mountainHeight: 1,
         rivers: false,
         riverChance: 0.001,
         riverDepth: 2,
