@@ -1,13 +1,33 @@
+var fs = require("fs");
+var c = require("canvas");
 module.exports = function imgmap(cx,cy, scale = 50, radius = 50, map){
     var v = require.main.require('./vars.js');
     
+    
+
     if(radius > 100 || scale > 1000){
         radius = 100;
         scale = 1000;
     }
     var xoffset = (radius-cx)*scale;
     var yoffset = (radius-cy)*scale;
-    var img = v.modules.createCanvas(radius * 2 * scale,radius * 2 * scale); //find something to make canvas
+    var img = c.createCanvas(radius * 2 * scale,radius * 2 * scale); //find something to make canvas
+    var biomeImages = {};
+    biomeImages["mountains"] =  c.loadImage('./images/mountain.png');
+    biomeImages["forest"] =  c.loadImage('./images/forest.png');
+    biomeImages["plains"] =  c.loadImage('./images/plains.png');
+    biomeImages["savannah"] =  c.loadImage('./images/savannah.png');
+    biomeImages["volcano"] =  c.loadImage('./images/valcano.png');
+    biomeImages["taiga"] =  c.loadImage('./images/tigia.png');
+    biomeImages["snowy"] =  c.loadImage('./images/snowy.png');
+    biomeImages["jungle"] =  c.loadImage('./images/jungle.png');
+    biomeImages["ocean"] =  c.loadImage('./images/ocean.png');
+    biomeImages["valley"] =  c.loadImage('./images/valley.png');
+    biomeImages["swamp"] =  c.loadImage('./images/swamp.png');
+    biomeImages["desert"] =  c.loadImage('./images/desert.png');
+    biomeImages["beach"] =  c.loadImage('./images/beach.png');
+    biomeImages["rivers"] =  c.loadImage('./images/rivers.png');
+    biomeImages["rockbeach"] =  c.loadImage('./images/rockbeach.png');
     var ctx = img.getContext("2d"); // get canvas context 
     ctx.font = scale + "px Serif";
     var px = 0;
@@ -25,8 +45,11 @@ module.exports = function imgmap(cx,cy, scale = 50, radius = 50, map){
                     continue;
                 }
                 var e = v.fn.map.seaHeight(map[x][y].elevation);
+                var drawn = false;
                 if(e <= 0){
-                    ctx.fillStyle = "rgb(10,10,200)";
+                    //ctx.fillStyle = "rgb(10,10,200)";
+                    ctx.drawImage(biomeImages["ocean"],(x * scale)+xoffset, (y*scale)+yoffset, scale, scale)
+                    drawn = true;
                 }else if(e <= v.d.mapInfo.shoreHeight){
                     var temp = 230 - (e*10)
                     temp = Math.round(temp);
@@ -40,8 +63,8 @@ module.exports = function imgmap(cx,cy, scale = 50, radius = 50, map){
                     temp = Math.round(temp);
                     ctx.fillStyle = "rgb("+(temp)+","+(temp)+","+(temp)+")";
                 }
-                 
-                ctx.fillRect((x * scale)+xoffset, (y*scale)+yoffset, scale, scale);
+                if(!drawn)
+                    ctx.fillRect((x * scale)+xoffset, (y*scale)+yoffset, scale, scale);
             }
             
             px++;
