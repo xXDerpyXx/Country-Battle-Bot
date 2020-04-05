@@ -12,22 +12,11 @@ module.exports = function imgmap(cx,cy, scale = 50, radius = 50, map){
     var xoffset = (radius-cx)*scale;
     var yoffset = (radius-cy)*scale;
     var img = c.createCanvas(radius * 2 * scale,radius * 2 * scale); //find something to make canvas
-    var biomeImages = {};
-    biomeImages["mountains"] =  c.loadImage('./images/mountain.png');
-    biomeImages["forest"] =  c.loadImage('./images/forest.png');
-    biomeImages["plains"] =  c.loadImage('./images/plains.png');
-    biomeImages["savannah"] =  c.loadImage('./images/savannah.png');
-    biomeImages["volcano"] =  c.loadImage('./images/valcano.png');
-    biomeImages["taiga"] =  c.loadImage('./images/tigia.png');
-    biomeImages["snowy"] =  c.loadImage('./images/snowy.png');
-    biomeImages["jungle"] =  c.loadImage('./images/jungle.png');
-    biomeImages["ocean"] =  c.loadImage('./images/ocean.png');
-    biomeImages["valley"] =  c.loadImage('./images/valley.png');
-    biomeImages["swamp"] =  c.loadImage('./images/swamp.png');
-    biomeImages["desert"] =  c.loadImage('./images/desert.png');
-    biomeImages["beach"] =  c.loadImage('./images/beach.png');
-    biomeImages["rivers"] =  c.loadImage('./images/rivers.png');
-    biomeImages["rockbeach"] =  c.loadImage('./images/rockbeach.png');
+    var biomeImages = Object();
+    for (imageFilename of v.modules.fs.readdirSync('./images')) {
+        biomeImages[imageFilename.slice(0,-4)] = c.loadImage('./images/'+imageFilename); //.slice to remove the ".png"
+    }
+    
     var ctx = img.getContext("2d"); // get canvas context 
     ctx.font = scale + "px Serif";
     var px = 0;
