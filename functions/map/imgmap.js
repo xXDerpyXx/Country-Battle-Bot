@@ -41,17 +41,28 @@ module.exports = async function imgmap(cx,cy, scale = 50, radius = 50, map){
                         ctx.drawImage(biomeImages.ocean,(x * scale)+xoffset, (y*scale)+yoffset, scale, scale)
                         drawn = true;
                     }else if(e <= v.d.mapInfo.shoreHeight){
+                        ctx.drawImage(biomeImages.beach,(x * scale)+xoffset, (y*scale)+yoffset, scale, scale)
+                        drawn = true;
+                        /*
                         var temp = 230 - (e*10)
                         temp = Math.round(temp);
-                        ctx.fillStyle = "rgb("+(temp)+","+(temp)+","+(182)+")";
+                        ctx.fillStyle = "rgb("+(temp)+","+(temp)+","+(182)+")";*/
                     }else if(e <= v.d.mapInfo.mountainHeight){
+                        ctx.drawImage(biomeImages.forest,(x * scale)+xoffset, (y*scale)+yoffset, scale, scale)
+                        drawn = true;
+                        /*
                         var temp = 150-(e*20);
                         temp = Math.round(temp);
                         ctx.fillStyle = "rgb("+(60)+","+(temp+00)+","+(30)+")";
+                        */
                     }else{
+                        ctx.drawImage(biomeImages.mountain,(x * scale)+xoffset, (y*scale)+yoffset, scale, scale)
+                        drawn = true;
+                        /*
                         var temp = ((e-6)*20)+100;
                         temp = Math.round(temp);
                         ctx.fillStyle = "rgb("+(temp)+","+(temp)+","+(temp)+")";
+                        */
                     }
                     if(!drawn)
                         ctx.fillRect((x * scale)+xoffset, (y*scale)+yoffset, scale, scale);
