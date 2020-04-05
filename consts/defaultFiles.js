@@ -21,6 +21,7 @@ module.exports = {
         riverDepth: 2,
         
         prefix: '$',
+        maxNonAdminChainLength: 5,
         genocide: true,
         admins: [
             "246589957165023232",

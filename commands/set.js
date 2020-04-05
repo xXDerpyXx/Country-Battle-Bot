@@ -45,6 +45,7 @@ module.exports = new v.c.cmd.Command(
                     description: 'The name of the setting to change.',
 
                     required: true,
+                    maxLength: 22,
                 }
             ),
             new v.c.cmd.Argument(
