@@ -41,7 +41,7 @@ module.exports = function personUpdate(id){
             }
         }
     }
-    if(localTiles[0] != null){
+    if(localTiles.length == 0){
         rx = localTiles[0].x;
         ry = localTiles[0].y;
     }
