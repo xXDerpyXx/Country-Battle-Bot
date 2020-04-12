@@ -1,9 +1,11 @@
 var fs = require("fs");
 var c = require("canvas");
-module.exports = async function imgmap(cx,cy, scale = 50, radius = 50, map){
+module.exports = async function imgmap(cx,cy, scale = 50, radius = 50, map,heightmap){
     return new Promise(async (res, rej) => {
         var v = require.main.require('./vars.js');
-        
+        if(heightmap == null){
+            heightmap = false;
+        }
         
 
         if(radius > 100 || scale > 1000){
@@ -35,6 +37,14 @@ module.exports = async function imgmap(cx,cy, scale = 50, radius = 50, map){
                         continue;
                     }
                     var e = v.fn.map.seaHeight(map[x][y].elevation);
+                    if(heightmap){
+                        var temp = 150-(e*20);
+                        temp = Math.round(temp);
+                        ctx.fillStyle = "rgb("+(temp)+","+(temp)+","+(temp)+")";
+                        ctx.fillRect((x * scale)+xoffset, (y*scale)+yoffset, scale, scale);
+                        continue;
+                    }
+                    
                     var drawn = false;
                     if(e <= 0){
                         //ctx.fillStyle = "rgb(10,10,200)";
@@ -74,11 +84,13 @@ module.exports = async function imgmap(cx,cy, scale = 50, radius = 50, map){
             py++;
         }
         ctx.fillStyle = "#000000";
-        for(var k in v.d.people){
-            //console.log(v.d.people[k]);
-            //ctx.fillRect(v.d.people[k].x * scale, v.d.people[k].y * scale, scale, scale);
-            if(v.fn.map.oob(v.d.people[k].x,v.d.people[k].y))
-                ctx.fillRect(Math.floor(((v.d.people[k].x+Math.random())) * scale)+xoffset, Math.floor(((v.d.people[k].y+Math.random())) * scale)+yoffset, scale/10, scale/10);
+        if(!heightmap){
+            for(var k in v.d.people){
+                //console.log(v.d.people[k]);
+                //ctx.fillRect(v.d.people[k].x * scale, v.d.people[k].y * scale, scale, scale);
+                if(v.fn.map.oob(v.d.people[k].x,v.d.people[k].y))
+                    ctx.fillRect(Math.floor(((v.d.people[k].x+Math.random())) * scale)+xoffset, Math.floor(((v.d.people[k].y+Math.random())) * scale)+yoffset, scale/10, scale/10);
+            }
         }
         /*
         let promises = Object.entries(v.d.people).filter(a => a[0] != id).map(([k,p]) => {
