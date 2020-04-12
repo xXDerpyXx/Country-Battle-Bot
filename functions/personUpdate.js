@@ -5,11 +5,11 @@ module.exports = function personUpdate(id){
     var rx = Math.round((Math.random()*2)-1);
     var ry = Math.round((Math.random()*2)-1);
 
-    var myx = v.d.people[id].x
-    var myy = v.d.people[id].y
+    var myx = v.d.people[id].x;
+    var myy = v.d.people[id].y;
 
     var localTiles = [];
-    var here = v.d.map[v.d.people[id].x][v.d.people[id].y]
+    var here = v.d.map[myx][myy];
 
     for(var x = myx-1; x < myx+1; x++){
         for(var y = myy-1; x < myy+1; y++){
@@ -30,7 +30,7 @@ module.exports = function personUpdate(id){
             localTiles[i].priority += here.elevation - localTiles[i].elevation; 
         }
 
-        localTiles[i].priority += (Math.random()*variance)-(variance/2)
+        localTiles[i].priority += (Math.random()*variance)-(variance/2);
     }
     for(var i = 0; i < localTiles.length;i++){
         for(var j = 0; j < localTiles.length-1;j++){
