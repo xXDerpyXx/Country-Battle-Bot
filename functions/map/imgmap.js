@@ -1,11 +1,13 @@
 var fs = require("fs");
 var c = require("canvas");
-module.exports = async function imgmap(cx,cy, scale = 50, radius = 50, map,heightmap){
+
+var validMapTypes = ['default', 'heightmap'];
+
+module.exports = async function imgmap(cx,cy, scale = 50, radius = 50, map, mapType = validMapTypes[0]){
     return new Promise(async (res, rej) => {
+        if (!validMapTypes.includes(mapType)) rej(new Error('mapType is invalid.'));
+
         var v = require.main.require('./vars.js');
-        if(heightmap == null){
-            heightmap = false;
-        }
         
 
         if(radius > 100 || scale > 1000){
@@ -37,7 +39,7 @@ module.exports = async function imgmap(cx,cy, scale = 50, radius = 50, map,heigh
                         continue;
                     }
                     var e = v.fn.map.seaHeight(map[x][y].elevation);
-                    if(heightmap){
+                    if(mapType == "heightmap"){
                         var temp = 150-(e*20);
                         temp = Math.round(temp);
                         ctx.fillStyle = "rgb("+(temp)+","+(temp)+","+(temp)+")";
@@ -84,7 +86,7 @@ module.exports = async function imgmap(cx,cy, scale = 50, radius = 50, map,heigh
             py++;
         }
         ctx.fillStyle = "#000000";
-        if(!heightmap){
+        if(mapType == 'default'){
             for(var k in v.d.people){
                 //console.log(v.d.people[k]);
                 //ctx.fillRect(v.d.people[k].x * scale, v.d.people[k].y * scale, scale, scale);
@@ -130,3 +132,5 @@ module.exports = async function imgmap(cx,cy, scale = 50, radius = 50, map,heigh
         res(img.createPNGStream());//("image/png",{ compressionLevel: 3, filters: img.PNG_FILTER_NONE });
     });
 }
+
+module.exports.validMapTypes = validMapTypes;
