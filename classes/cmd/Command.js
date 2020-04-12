@@ -23,11 +23,8 @@ module.exports = class Command {
                         parsedArgs[arg.name] = parsedArg;
                     }
                 } else if (arg.options.required) return `${arg.argName()} must be provided.`;
-                else {
-                    if (arg.options.default) {
-                        parsedArgs[arg.name] = arg.options.default;
-                    } else parsedArgs[arg.name] = null;
-                }
+                else if (arg.options.default) parsedArgs[arg.name] = arg.options.default;
+                else parsedArgs[arg.name] = null;
             }
             return parsedArgs;
         } else return 'You\'ve provided too many arguments.';
