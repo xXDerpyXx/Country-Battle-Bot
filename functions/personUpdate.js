@@ -41,9 +41,10 @@ module.exports = function personUpdate(id){
             }
         }
     }
-
-    rx = localTiles[0].x;
-    ry = localTiles[0].y;
+    if(localTiles[0] != null){
+        rx = localTiles[0].x;
+        ry = localTiles[0].y;
+    }
 
     if(v.fn.map.oob(myx+rx,myy+ry)){ //If the location they're going to move to is within the boundaries of the map
         if(v.d.map[myx+rx][myy+ry].elevation > v.d.mapInfo.seaLevel){ //If the location the person is trying to move to is on land (and therefore not in the ocean)
