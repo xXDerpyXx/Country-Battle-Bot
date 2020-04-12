@@ -12,7 +12,7 @@ module.exports = function personUpdate(id){
     var here = v.d.map[myx][myy];
 
     for(var x = myx-1; x < myx+1; x++){
-        for(var y = myy-1; x < myy+1; y++){
+        for(var y = myy-1; y < myy+1; y++){
             if(v.fn.map.oob(x,y)){
                 var temp = v.d.map[x][y];
                 temp.priority = 0
@@ -41,7 +41,7 @@ module.exports = function personUpdate(id){
             }
         }
     }
-    if(localTiles.length == 0){
+    if(localTiles.length > 0){
         rx = localTiles[0].x;
         ry = localTiles[0].y;
     }
