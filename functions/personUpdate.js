@@ -42,8 +42,8 @@ module.exports = function personUpdate(id){
         }
     }
     if(localTiles.length > 0){
-        rx = localTiles[0].x;
-        ry = localTiles[0].y;
+        rx = localTiles[0].x-myx;
+        ry = localTiles[0].y-myy;
     }
 
     if(v.fn.map.oob(myx+rx,myy+ry)){ //If the location they're going to move to is within the boundaries of the map
