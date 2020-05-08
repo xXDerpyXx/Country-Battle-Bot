@@ -13,12 +13,11 @@ module.exports = function personUpdate(id){
 
     for(var x = myx-1; x < myx+2; x++){
         for(var y = myy-1; y < myy+2; y++){
-            if(v.fn.map.oob(x,y)){
-                var temp = v.d.map[x][y];
-                temp.priority = 0
-                if(temp.elevation > v.d.mapInfo.seaLevel){ //this may change when boats exist
-                    localTiles.push(temp);
-                }
+            let loc = v.fn.map.wrap(x, y);
+            var temp = v.d.map[loc.x][loc.y];
+            temp.priority = 0;
+            if(temp.elevation > v.d.mapInfo.seaLevel){ //this may change when boats exist
+                localTiles.push(temp);
             }
         }
     }
