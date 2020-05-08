@@ -55,13 +55,12 @@ module.exports = function personUpdate(id){
         ry = localTiles[t].y-myy;
     }
 
-    if(v.fn.map.oob(myx+rx,myy+ry)){ //If the location they're going to move to is within the boundaries of the map
-        if(v.d.map[myx+rx][myy+ry].elevation > v.d.mapInfo.seaLevel){ //If the location the person is trying to move to is on land (and therefore not in the ocean)
-            //move the person to the generated location
-            v.d.people[id].x += rx;
-            v.d.people[id].y += ry;
-        }
-        
+    let movingTo = v.fn.map.wrap(myx+rx, myy+ry); //correct out of bounds coordinates
+
+    if(v.d.map[movingTo.x][movingTo.y].elevation > v.d.mapInfo.seaLevel){ //If the location the person is trying to move to is on land (and therefore not in the ocean)
+        //move the person to the generated location
+        v.d.people[id].x = movingTo.x;
+        v.d.people[id].y = movingTo.y;
     }
 }
 
