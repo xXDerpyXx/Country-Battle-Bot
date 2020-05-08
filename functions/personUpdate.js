@@ -11,8 +11,8 @@ module.exports = function personUpdate(id){
     var localTiles = [];
     var here = v.d.map[myx][myy];
 
-    for(var x = myx-1; x < myx+1; x++){
-        for(var y = myy-1; y < myy+1; y++){
+    for(var x = myx-1; x < myx+2; x++){
+        for(var y = myy-1; y < myy+2; y++){
             if(v.fn.map.oob(x,y)){
                 var temp = v.d.map[x][y];
                 temp.priority = 0
@@ -23,7 +23,7 @@ module.exports = function personUpdate(id){
         }
     }
 
-    var variance = 2;
+    var variance = 5;
 
     for(var i = 0; i < localTiles.length;i++){
         if(localTiles[i].elevation < here.elevation){
@@ -34,16 +34,25 @@ module.exports = function personUpdate(id){
     }
     for(var i = 0; i < localTiles.length;i++){
         for(var j = 0; j < localTiles.length-1;j++){
-            if(localTiles[j].priority > localTiles[j+1].priority){
+            if(localTiles[j].priority < localTiles[j+1].priority){
                 temp = localTiles[j];
                 localTiles[j] = localTiles[j+1];
                 localTiles[j+1] = temp;
             }
         }
     }
-    if(localTiles.length > 0){
-        rx = localTiles[0].x-myx;
-        ry = localTiles[0].y-myy;
+
+    var t = 0
+    
+    if(Math.random() > 0.5){
+        t = 1;
+        if(Math.random() > 0.5){
+            t = 2;
+        }
+    }
+    if(localTiles.length > t){
+        rx = localTiles[t].x-myx;
+        ry = localTiles[t].y-myy;
     }
 
     if(v.fn.map.oob(myx+rx,myy+ry)){ //If the location they're going to move to is within the boundaries of the map
