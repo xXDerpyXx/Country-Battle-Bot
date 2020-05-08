@@ -1,6 +1,5 @@
 function correct(n, max) {
     while (true) {
-        console.log(n, max)
         if (n < 0)
             n = max + n;
         else if (n >= max)
