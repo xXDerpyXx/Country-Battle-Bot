@@ -12,8 +12,10 @@ v.d.worldData.cultures = Object.assign(v.d.worldData.cultures, v.consts.funnyCul
 
 
 setInterval(function(){
-    for(var k in v.d.people){
-        v.fn.personUpdate(k);
+    if (!v.d.settings.paused) {
+        for(var k in v.d.people){
+            v.fn.personUpdate(k);
+        }
     }
 },1000)
 

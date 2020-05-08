@@ -6,6 +6,8 @@ module.exports = {
     'map.json': Array(),
 
     'settings.json': {
+        paused: false,
+
         width: 100,
         height: 100,
 

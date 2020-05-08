@@ -17,14 +17,14 @@ module.exports = new v.c.cmd.Command(
                     break;
                 case 'boolean':
                     switch (args.newValue.toLowerCase()) {
-                    case 'true':
-                        v.d.settings[args.setting] = true;
-                        break;
-                    case 'false':
-                        v.d.settings[args.setting] = false;
-                        break;
-                    default:
-                        return 'This is a boolean setting. You must provide "true" or "false".'
+                        case 'true':
+                            v.d.settings[args.setting] = true;
+                            break;
+                        case 'false':
+                            v.d.settings[args.setting] = false;
+                            break;
+                        default:
+                            return 'This is a boolean setting. You must provide "true" or "false".';
                     }
                     break;
                 default:
