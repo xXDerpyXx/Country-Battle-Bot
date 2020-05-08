@@ -11,14 +11,6 @@ if(v.d.worldData == null){
 v.d.worldData.cultures = Object.assign(v.d.worldData.cultures, v.consts.funnyCultures);
 
 
-setInterval(function(){
-    if (!v.d.settings.paused) {
-        for(var k in v.d.people){
-            v.fn.personUpdate(k);
-        }
-    }
-},1000)
-
 const commands = v.modules.requireDir('./commands');
 
 v.client.on('ready', () => {

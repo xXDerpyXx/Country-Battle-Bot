@@ -7,6 +7,7 @@ module.exports = {
 
     'settings.json': {
         paused: false,
+        tickDelay: 10000,
 
         width: 100,
         height: 100,

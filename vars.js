@@ -34,5 +34,7 @@ module.exports = {
         rs: rs,
     },
     client: client,
-    rand: new rs()
+    rand: new rs(),
+
+    personUpdater: setInterval(fn.updateAllPeople, d.settings.tickDelay),
 };

@@ -9,8 +9,14 @@ module.exports = new v.c.cmd.Command(
                     if (isNaN(num)) {
                         return 'This setting must be changed to a number.';
                     } else {
-                        v.d.settings[args.setting] = parseFloat(args.newValue);
+                        v.d.settings[args.setting] = num;
                     }
+
+                    if (args.setting == 'tickDelay') {
+                        clearInterval(v.personUpdater);
+                        v.personUpdater = setInterval(v.fn.updateAllPeople, num);
+                    }
+                    
                     break;
                 case 'string':
                     v.d.settings[args.setting] = args.newValue;
