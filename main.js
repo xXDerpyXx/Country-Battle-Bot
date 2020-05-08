@@ -48,7 +48,7 @@ async function runCommand(msg, cmdString=msg.content) {
     let command = args.shift(); //take the first of those words as the command
 
     msg.channel.send(await (async () => {
-        if (commands[command] != null) { //if the command called exists,
+        if (commands.hasOwnProperty(command)) { //if the command called exists,
             command = commands[command];
 
             if (command.options.adminOnly && !v.d.settings.admins.includes(msg.author.id)) { //if the command is an admin only command but the user isn't an admin
