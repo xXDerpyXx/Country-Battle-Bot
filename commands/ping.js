@@ -21,7 +21,7 @@ function msToTime(ms){
 module.exports = new v.c.cmd.Command(
     async (args, msg) => {
         pinger = await msg.channel.send('pinging...');
-        pinger.edit("**Command to response delay**: `" + (pinger.createdAt - msg.createdAt) + "ms`\n**API**: `" + Math.round(v.client.ping) + "ms`\n**Uptime**: `" + msToTime(v.client.uptime) + "`");
+        pinger.edit("**Command to response delay**: `" + (pinger.createdAt - msg.createdAt) + "ms`\n**API**: `" + Math.round(v.client.ws.ping) + "ms`\n**Uptime**: `" + msToTime(v.client.uptime) + "`");
     },
 
     {
