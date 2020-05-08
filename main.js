@@ -1,5 +1,4 @@
 var v = require("./vars");
-const client = new v.modules.discord.Client();
 
 if(v.d.worldData == null){
     v.d.worldData = {
