@@ -1,7 +1,8 @@
 const defaultOptions = {
-    'adminOnly': false,
-    'description': 'This command doesn\'t currently have a description.',
-    'args': Array(),
+    adminOnly: false,
+    hidden: false,
+    description: 'This command doesn\'t currently have a description.',
+    args: Array(),
 }
 
 module.exports = class Command {

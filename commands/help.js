@@ -24,6 +24,7 @@ module.exports = new v.c.cmd.Command(
             let output = String();
             for (i of Object.keys(commands).sort()) {
                 let command = commands[i];
+                if (command.options.hidden) continue;
                 if (command.options.adminOnly && !v.d.settings.admins.includes(msg.author.id)) continue;
                 let output2 = String();
                 for (let arg of command.options.args) {
