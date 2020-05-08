@@ -39,7 +39,7 @@ async function runCommand(msg, cmdString=msg.content) {
     let args = content.split(' '); //split the message into an array of each word
     let command = args.shift(); //take the first of those words as the command
 
-    msg.channel.send(await (async () => {
+    let msgToSend = await (async () => {
         if (commands.hasOwnProperty(command)) { //if the command called exists,
             command = commands[command];
 
@@ -58,5 +58,8 @@ async function runCommand(msg, cmdString=msg.content) {
                 return 'Error running command. Alert an admin.';
             }
         } else return `\`${v.d.settings.prefix}${command}\` isn't a command.`;
-    })());
+    })();
+
+    if (msgToSend !== undefined)
+        msg.channel.send(msgToSend);
 }
