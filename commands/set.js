@@ -13,8 +13,8 @@ module.exports = new v.c.cmd.Command(
                     }
 
                     if (args.setting == 'tickDelay') {
-                        clearInterval(v.personUpdater);
-                        v.personUpdater = setInterval(v.fn.updateAllPeople, num);
+                        clearInterval(v.ticker);
+                        v.ticker = setInterval(v.fn.updateAllPeople, num);
                     }
                     
                     break;
