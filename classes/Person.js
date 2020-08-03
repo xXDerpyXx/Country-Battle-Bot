@@ -1,10 +1,10 @@
 module.exports = class Person {
 
-	constructor(id, x, y, culture) {
+	constructor(id, x, y, culture, rand = Math) {
 		var v = require.main.require('./vars.js');
     
 
-		this.name = v.fn.randomName(culture);
+		this.name = v.fn.randomName(culture, rand);
         this.id = id;
 
 		this.econStance;

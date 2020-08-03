@@ -1,28 +1,28 @@
-module.exports = function randomName(c) {
+module.exports = function randomName(c, rand = Math) {
     var v = require.main.require('./vars.js');
     
-    var vowels = c.vowels;
+    var vowels = c.lang.vowels;
     var output = "";
     var type = "c";
-    if(Math.random() > 0.5) { // 5/10 of the time,
+    if(rand.random() > 0.5) { // 5/10 of the time,
         type = "v";
     }
 
     //Generate a random first letter and capitalise it based on the language's naming rules
-    var letter = v.fn.pickLetter(type,c);
-    if(c.capitalization == "start" || (c.capitalization == "random" && Math.random() >0.5)|| c.capitalization == "all"){
+    var letter = v.fn.pickLetter(type, c, rand);
+    if(c.lang.capitalization == "start" || (c.capitalization == "random" && rand.random() >0.5)|| c.lang.capitalization == "all"){
         letter = letter.toUpperCase();
     }
     
-    for(var i = 0; i < (Math.random()*20)+1; i++) {
+    for(var i = 0; i < (rand.random()*20)+1; i++) {
         if(vowels.includes(letter)) {
             type = "v";
         } else {
             type = "c";
         }
         output = output+letter;
-        letter = v.fn.pickLetter(type,c);
-        if((c.capitalization == "random" && Math.random() >0.5) || c.capitalization == "all"){
+        letter = v.fn.pickLetter(type, c, rand);
+        if((c.lang.capitalization == "random" && rand.random() >0.5) || c.lang.capitalization == "all"){
             letter = letter.toUpperCase();
         }
     }

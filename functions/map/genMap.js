@@ -6,13 +6,9 @@ normalize = function(vec) {
     return vec;
 }
 
-module.exports = function genMap(seed){
+module.exports = function genMap(rand){
     var v = require.main.require('./vars.js');
-    let rand = v.modules.rs(seed);
-    
-    v.d.mapInfo = {
-        seed: seed,
-    };
+
     for (i of ['width', 'height', 'seaLevel', 'baseHeight', 'variation', 'smoothness', 'wackyness', 'shoreHeight', 'mountainHeight', 'genocide',"rivers","riverChance","riverDepth"]) {
         v.d.mapInfo[i] = v.d.settings[i];
     }
@@ -99,9 +95,9 @@ module.exports = function genMap(seed){
             if(v.fn.map.seaHeight(v.d.map[x][y].elevation) > 0 && rand.random() > 0.99){
                 //console.log(v.fn.map.seaHeight(v.d.map[x][y].elevation))
                 
-                var culture = v.fn.randomProperty(v.d.worldData.cultures);
+                var culture = v.fn.randomProperty(v.d.worldData.cultures, rand);
                 for(var i = 0; i < 200; i++){
-                    let id = v.fn.uuid(v.d.people);
+                    let id = v.fn.uuid(v.d.people, rand);
                     v.d.people[id] = new v.c.Person(id,x,y,culture);
                 }
             }
