@@ -4,7 +4,7 @@ module.exports = new v.c.cmd.Command(
     (args, msg) => {
         if (!v.d.people.hasOwnProperty(args.personid))
             return 'There\'s no person with that ID.';
-        return v.fn.people.describePerson(args.personid);
+        return v.fn.people.describe(args.personid);
     },
 
     {
