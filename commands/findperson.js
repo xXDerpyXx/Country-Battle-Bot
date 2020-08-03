@@ -2,14 +2,9 @@ var v = require.main.require('./vars.js');
 
 module.exports = new v.c.cmd.Command(
     (args, msg) => {
-        var output = String();
         if (!v.d.people.hasOwnProperty(args.personid))
             return 'There\'s no person with that ID.';
-        var p = v.d.people[args.personid];
-        for(let k in p){
-            output += `   ${k}: ${p[k]}\n`;
-        }
-        return `${p.id}:\n${output}`;
+        return v.fn.people.describePerson(args.personid);
     },
 
     {
