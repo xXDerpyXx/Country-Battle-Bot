@@ -1,9 +1,9 @@
 module.exports = {
-    'countries.json': Object(),
+    'countries.json': {},
 
-    'people.json': Object(),
+    'people.json': {},
     
-    'map.json': Array(),
+    'map.json': [],
 
     'settings.json': {
         paused: false,
@@ -35,6 +35,6 @@ module.exports = {
     'mapInfo.json': null,
 
     'worldData.json': {
-        cultures: Object(),
+        cultures: {},
     },
 }
