@@ -13,10 +13,10 @@ module.exports = function genMap(rand){
         v.d.mapInfo[i] = v.d.settings[i];
     }
     
-    v.d.people = Object();
-    v.d.map = Array();
+    v.d.people = {};
+    v.d.map = [];
     for(var x = 0; x < v.d.mapInfo.width; x++){
-        v.d.map[x] = Array();
+        v.d.map[x] = [];
         for(var y = 0; y < v.d.mapInfo.height; y++){
             v.d.map[x][y] = new v.c.Tile(x,y);
             v.d.map[x][y].elevation = Math.round(v.d.mapInfo.seaLevel+((rand.random()*v.d.mapInfo.variation)-v.d.mapInfo.baseHeight));

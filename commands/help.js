@@ -6,7 +6,7 @@ module.exports = new v.c.cmd.Command(
         if (args.cmd) { //if the user has specified a command to get help on
             cmd = commands[args.cmd];
             if (cmd) {
-                let output = Object();
+                let output = {};
                 for (let arg of cmd.options.args) {
                     let fullDesc = String();
 

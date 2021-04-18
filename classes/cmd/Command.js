@@ -2,7 +2,7 @@ const defaultOptions = {
     adminOnly: false,
     hidden: false,
     description: 'This command doesn\'t currently have a description.',
-    args: Array(),
+    args: [],
 }
 
 module.exports = class Command {
@@ -13,7 +13,7 @@ module.exports = class Command {
 
     parseArgs(args) {
         if (args.length <= this.options.args.length) { //As long as there isn't more arguments than there should be
-            let parsedArgs = Object();
+            let parsedArgs = {};
             for (let i = 0; i < this.options.args.length; i++) {
                 let arg = this.options.args[i];
                 if (args[i] != null) {

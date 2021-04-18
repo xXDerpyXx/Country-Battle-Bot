@@ -17,7 +17,7 @@ module.exports = async function imgmap(cx,cy, scale = 50, radius = 50, map, mapT
         var xoffset = (radius-cx)*scale;
         var yoffset = (radius-cy)*scale;
         var img = c.createCanvas(radius * 2 * scale,radius * 2 * scale); //find something to make canvas
-        var biomeImages = Object();
+        var biomeImages = {};
         for (imageFilename of v.modules.fs.readdirSync('./images/biomes')) {
             biomeImages[imageFilename.slice(0,-4)] = await c.loadImage('./images/biomes/'+imageFilename); //.slice to remove the ".png"
         }
